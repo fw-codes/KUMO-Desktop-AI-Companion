@@ -1,0 +1,371 @@
+@import './base.css';
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: 300px;
+  overflow: hidden;
+  background: transparent;
+  user-select: none;
+  -webkit-app-region:no-drag;
+}
+.kumo {
+  width: 150px;
+  display: block;
+}
+.kumo-float {
+  animation: float 3s ease-in-out infinite;
+}
+.kumo {
+  width: 150px;
+  position: relative;
+  transform-origin: 50% 15%;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.kumo.open { transform: scale(0.94, 1.18); }
+
+.kumo-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.eyes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: transform 0.08s linear;
+}
+
+.eye {
+  position: absolute;
+  width: 6%;               /* eye size relative to the cloud */
+  height: auto;
+  top: 50%;
+  transform: translate(-20%, -25%); /* so left/top mean the eye's CENTER */
+  transform: translate(10%, 15%);
+}
+.eye-l { left: 34%; top: 53px;  }
+.eye-r { left: 62%; top:53px; }
+.kumo-click {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }  
+}
+
+
+@keyframes typing {
+  0%, 100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+.cbubble {
+  
+  border-radius: 18px;
+  padding: 8px  ;
+  margin-bottom: 15px;
+ 
+}
+
+.cbubble.user{
+background-color: rgba(139, 0, 139, 0.516);
+color: white;
+align-self: flex-end;
+margin-left: 30px;
+
+}
+
+.cbubble.kumoi{
+  background-color: rgb(213, 207, 255);
+  color: black;
+align-self: flex-start;
+margin-right: 30px;
+}
+
+.inputb{
+   -webkit-app-region: no-drag;
+}
+.inputb input{
+  background: rgb(213, 207, 255);
+  border-radius: 20px;
+  color: rgb(19, 20, 20);
+  border: none;
+  width: 210px;
+  outline: none;
+  padding: 10px;
+  z-index: 100;
+   
+   position: relative;
+}
+.inputb input::placeholder{
+  color: rgb(19, 20, 20);
+   -webkit-app-region: no-drag;
+
+}
+.inputb button{
+  position: relative;
+  background-color: rgba(139, 0, 139, 0.516); 
+  border-radius: 50px;
+  z-index: 101;
+  border: none;
+  outline: none;
+  padding: 10px;
+  cursor: pointer;
+  pointer-events: auto;
+  color: white;
+   
+}
+.kumo, .kumo-body { user-select: none; -webkit-user-drag: none; cursor: grab; }
+.kumo-body:active { cursor: grabbing; }
+
+/* click: elongate downward with a springy overshoot */
+.kumo {
+  transform-origin: 50% 15%;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.kumo.open { transform: scale(0.94, 1.18); }
+
+/* input bar: hidden until Kumo is clicked */
+.input-wrap {
+  opacity: 0;
+  transform: translateY(14px) scale(0.92);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.input-wrap.open {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* squash when hitting a screen edge */
+.hit-x { animation: squash-x 0.35s ease-out; }
+.hit-y { animation: squash-y 0.35s ease-out; }
+@keyframes squash-x {
+  30% { transform: scale(0.72, 1.18); }
+  60% { transform: scale(1.1, 0.94); }
+}
+@keyframes squash-y {
+  30% { transform: scale(1.2, 0.72); }
+  60% { transform: scale(0.94, 1.1); }
+}
+.kumo-click {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  -webkit-app-region: no-drag; /* Allows React pointer events to fire */
+  touch-action: none;          /* Prevents browser default drag behavior */
+}
+.chat-area {
+  height: 190px;
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 0;
+  flex-shrink: 0;
+}
+code {
+  font-weight: 600;
+  padding: 3px 5px;
+  border-radius: 2px;
+  background-color: var(--color-background-mute);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  font-size: 85%;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 80px;
+}
+
+.logo {
+  margin-bottom: 20px;
+  -webkit-user-drag: none;
+  height: 128px;
+  width: 128px;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 1.2em #6988e6aa);
+}
+
+.creator {
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--ev-c-text-2);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-size: 28px;
+  color: var(--ev-c-text-1);
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+  margin: 0 10px;
+  padding: 16px 0;
+                 
+}
+.cursor{
+  width: 2px;
+  height: 21px;
+   background: #f0dc4e;
+  display: inline-block;
+  animation: blink 1.0s infinite;
+  border-radius: 2px;
+  box-shadow: 0 0 8px #f0dc4e;
+}
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.tip {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--ev-c-text-2);
+  font-weight: 600;
+}
+
+.react {
+  background: -webkit-linear-gradient(315deg, #087ea4 55%, #7c93ee);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.ts {
+  background: -webkit-linear-gradient(315deg, #3178c6 25%, #f0dc4e);
+  background-clip: text;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  padding-top: 32px;
+  margin: -6px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.action {
+  flex-shrink: 0;
+  padding: 6px;
+}
+
+.action a {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block; 
+  border: 1px solid transparent;
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: 20px;
+  padding: 0 20px;
+  line-height: 38px;
+  font-size: 14px;
+  border-color: var(--ev-button-alt-border);
+  color: var(--ev-button-alt-text);
+  background-color: var(--ev-button-alt-bg);
+}
+
+.action a:hover {
+  border-color: var(--ev-button-alt-hover-border);
+  color: var(--ev-button-alt-hover-text);
+  background-color: var(--ev-button-alt-hover-bg);
+}
+
+.versions {
+  position: absolute;
+  bottom: 30px;
+  margin: 0 auto;
+  padding: 15px 0;
+  font-family: 'Menlo', 'Lucida Console', monospace;
+  display: inline-flex;
+  overflow: hidden;
+  align-items: center;
+  border-radius: 22px;
+  background-color: #202127;
+  backdrop-filter: blur(24px);
+}
+
+.versions li {
+  display: block;
+  float: left;
+  border-right: 1px solid var(--ev-c-gray-1);
+  padding: 0 20px;
+  font-size: 14px;
+  line-height: 14px;
+  opacity: 0.8;
+  &:last-child {
+    border: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .text {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .versions {
+    display: none;
+  }
+}
+
+@media (max-width: 350px) {
+  .tip,
+  .actions {
+    display: none;
+  }
+}
