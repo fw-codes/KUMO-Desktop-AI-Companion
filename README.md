@@ -58,6 +58,5 @@ src/
 
 Faariah Waseem, B.Tech Computer Engineering, Aligarh Muslim University
 
-GitHub · LinkedIn
 
 <div align="center">Made with ☁️ and a lot of bouncing.</div>
