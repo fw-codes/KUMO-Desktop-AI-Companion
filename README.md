@@ -3,7 +3,7 @@
 
 A bouncy, AI-powered desktop companion that lives on your screen.
 Drag it, throw it across your desktop, watch its eyes follow your cursor, and chat with a local LLM, all from a tiny cloud.
-
+</div>
 
 ⬇️ Install (Windows)
 Install Ollama and pull a model:
