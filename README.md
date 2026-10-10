@@ -1,34 +1,63 @@
-# kumo
+<div align="center">
+☁️ Kumo
 
-An Electron application with React and TypeScript
+A bouncy, AI-powered desktop companion that lives on your screen.
+Drag it, throw it across your desktop, watch its eyes follow your cursor, and chat with a local LLM, all from a tiny cloud.
 
-## Recommended IDE Setup
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+⬇️ Install (Windows)
+Install Ollama and pull a model:
+bash
+   ollama pull YOUR_MODEL_NAME
+Download kumo-1.0.0-setup.exe from the latest release.
+Run it. Kumo installs silently and appears on your desktop.
 
-## Project Setup
+Note: The installer isn't code-signed, so Windows SmartScreen may show "Windows protected your PC". Click More info, then Run anyway.
 
-### Install
+Quit Kumo from the system tray icon (right-click, Quit Kumo).
 
-```bash
-$ npm install
-```
 
-### Development
 
-```bash
-$ npm run dev
-```
+🛠️ Run from source
+bash
+git clone YOUR_REPO_URL
+cd Kumo
+npm install
+npm run dev
 
-### Build
+Make sure Ollama is running and your model is pulled first.
 
-```bash
-# For windows
-$ npm run build:win
+To build the Windows installer:
 
-# For macOS
-$ npm run build:mac
+bash
+npm run build:win
 
-# For Linux
-$ npm run build:linux
-```
+The installer is written to the dist folder.
+
+
+Project structure
+src/
+├── main/
+│   ├── index.ts        # window, tray, cursor polling, IPC, auto-start
+│   ├── physics.ts      # drag tracking + bounce physics
+│   └── AI/ollama.ts    # streaming client for the local model
+├── preload/
+│   └── index.ts        # safe IPC bridge exposed as window.electron
+└── renderer/src/
+    ├── App.tsx         # Kumo, eyes, chat state, pointer handling
+    ├── components/     # Chatbubble, Chatinput
+    └── assets/         # body and eye artwork (designed in Figma)
+    
+
+🗺️ Roadmap
+ Settings panel (model choice, bounce strength)
+ macOS and Linux builds
+ More moods and animations (sleepy, happy, thinking)
+ Conversation memory
+👩‍💻 Author
+
+Faariah Waseem, B.Tech Computer Engineering, Aligarh Muslim University
+
+GitHub · LinkedIn
+
+<div align="center">Made with ☁️ and a lot of bouncing.</div>
